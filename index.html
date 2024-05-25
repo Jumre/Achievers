@@ -390,11 +390,11 @@
                 doc.text("Monthly Contribution", 20, 20);
 
                 // Add table 1
-                const table = document.getElementById("contributionTable_1");
-                doc.autoTable({ html: table, startY: 30 });
+                const table1 = document.getElementById("contributionTable_1");
+                doc.autoTable({ html: table1, startY: 30 });
                 // Add table 2
-                const table = document.getElementById("contributionTable_2");
-                doc.autoTable({ html: table, startY: 30 });
+                const table2 = document.getElementById("contributionTable_2");
+                doc.autoTable({ html: table2, startY: 30 });
 
                 // Calculate position for additional information
                 const tableHeight = doc.autoTable.previous.finalY;
