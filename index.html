@@ -115,7 +115,7 @@
             <h1>Achievers Next Generation</h1>
         </header>
         <main>
-            <table id="contributionTable">
+            <table id="contributionTable_1">
                 <thead>
                     <tr>
                         <th>Member</th>
@@ -240,7 +240,7 @@
             </table>
 
 
-            <table id="contributionTable">
+            <table id="contributionTable_2">
                 <thead>
                     <tr>
                         <th>Member</th>
@@ -353,7 +353,7 @@
                 <div class="info-section right-info">
                     <h3>Financial Overview</h3>
                     <p><strong>Balance Carried Forward:</strong> Ksh. 0</p>
-                    <p><strong>Total Money in Account:</strong> Ksh. 52,000</p>
+                    <p><strong>Total Money in Account:</strong> Ksh. 56,000</p>
                 </div>
                 <div class="info-section left-info">
                     <p><strong>Payment Information:</strong></p>
@@ -389,8 +389,11 @@
                 doc.setFontSize(18);
                 doc.text("Monthly Contribution", 20, 20);
 
-                // Add table
-                const table = document.getElementById("contributionTable","contributionTable");
+                // Add table 1
+                const table = document.getElementById("contributionTable_1");
+                doc.autoTable({ html: table, startY: 30 });
+                // Add table 2
+                const table = document.getElementById("contributionTable_2");
                 doc.autoTable({ html: table, startY: 30 });
 
                 // Calculate position for additional information
