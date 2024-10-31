@@ -250,7 +250,7 @@
                         <td><strong>Ksh. 40,000</strong></td>
                         <td><strong>Ksh. 40,000</strong></td>
                         <td><strong>Ksh. 40,000</strong></td>
-                        <td><strong>Ksh. 28,000</strong></td>
+                        <td><strong>Ksh. 38,400</strong></td>
                         
                         
                     </tr>
@@ -423,7 +423,7 @@
 
             // Add title
             doc.setFontSize(18);
-            doc.text("Monthly Contribution - Table 1", 20, 20);
+            doc.text("Achievers", 20, 20);
 
             // Add table 1
             const table1 = document.getElementById("contributionTable_1");
@@ -451,14 +451,14 @@
             // Add a new page for Table 2
             doc.addPage();
             doc.setFontSize(18);
-            doc.text("Monthly Contribution - Table 2", 20, 20);
+            doc.text("Achievers", 20, 20);
 
             // Add table 2 on the new page
             const table2 = document.getElementById("contributionTable_2");
             doc.autoTable({ html: table2, startY: 30 });
 
             // Save the PDF
-            doc.save("Monthly_Contribution.pdf");
+            doc.save("Achievers_Monthly_Savings.pdf");
         });
     });
 </script>
