@@ -15,7 +15,7 @@
 .contact-form {
   background-color: #f8f9fa;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .btn-submit {
@@ -65,6 +65,31 @@ ul {
   height: 20px;
   margin-right: 10px;
 }
+
+/* Custom styles for input fields */
+.contact-form .form-control {
+  width: 100%;  /* Ensure the input fields take the full width */
+  padding: 10px; /* Increase padding for better visibility */
+  font-size: 16px; /* Increase font size for readability */
+  min-height: 40px; /* Ensure the message box is bigger */
+  border-radius: 8px; /* Make the borders rounded */
+}
+
+/* Adjust textareas to make them more spacious */
+.contact-form textarea {
+  width: 100%;  /* Make the textarea take up full width */
+  padding: 12px; /* Increase padding for better spacing */
+  font-size: 16px; /* Increase font size */
+  border-radius: 8px; /* Rounded corners */
+  min-height: 250px; /* Ensure the message box is bigger */
+  resize: vertical; /* Allow resizing vertically if needed */
+}
+
+/* Optional: Increase form control size for better visuals */
+.contact-form .form-group {
+  margin-bottom: 20px; /* Add space between inputs */
+}
+
 
   </style>
 </head>
@@ -127,7 +152,7 @@ ul {
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Your Email">
+          <input type="email" class="form-control" id="email"  placeholder="Your Email">
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">Message</label>
