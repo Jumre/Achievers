@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
   <style>
     /* Custom CSS */
     .portfolio-item {
@@ -293,6 +300,7 @@
               </tbody>
             </table>
           </div>
+          <canvas id="contributionChart" width="400" height="200"></canvas>
           <div class="row mt-4">
             <div class="col-md-6 left-info">
               <h5>Financial Overview</h5>
@@ -307,6 +315,8 @@
               <p>Account: 1015015787</p>
             </div>
           </div>
+          
+
           <div class="text-center mt-4">
             <button id="downloadPDF" class="btn btn-download">Download as PDF</button>
           </div>
@@ -332,6 +342,30 @@
 <!-- Custom Script -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Initialize the chart
+    const ctx = document.getElementById('contributionChart').getContext('2d');
+    const contributionChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [{
+          label: 'Total Contributions (Ksh)',
+          data: [40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 36000],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
     // Set the current date
     const dateElement = document.getElementById("date");
     const currentDate = new Date();
@@ -345,7 +379,8 @@
 
       // Add title
       doc.setFontSize(18);
-      doc.text("Achievers Next Generation", 20, 20);
+      doc.setFont("courier", "normal");
+      doc.text("Achievers Next Generation - 2024", 20, 20);
 
       // Add table
       const table = document.getElementById("contributionTable");
@@ -362,7 +397,7 @@
       doc.text(leftInfo, 20, yOffset);
 
       // Add link to Money out
-      const linkText = "Click here to see updates";
+      const linkText = "See website";
       doc.setTextColor(0, 0, 255);
       doc.textWithLink(linkText, 20, yOffset + 35, { url: 'https://jumre.github.io/Achievers/index.html' });
 
@@ -379,11 +414,31 @@
       doc.setFont("courier", "normal");
       doc.text(dateStr, pageWidth - 60, dateYPosition);
 
-      // Save the PDF
-      doc.save("Achievers_Contribution.pdf");
-    });
+      // Add a new page (Page 2) for the chart
+  doc.addPage();
+  // Add title
+      doc.setFontSize(18);
+      doc.setFont("courier", "normal");
+      doc.text("Contribution chart, 2024", 20, 20);
+
+  // Convert the chart to an image (base64 string) and add it to Page 2
+  const chart = document.getElementById('contributionChart');
+  html2canvas(chart).then(function (canvas) {
+    // Convert canvas to image
+    const chartImage = canvas.toDataURL('image/png');
+
+    // Add the chart image to Page 2
+    doc.addImage(chartImage, 'PNG', 20, 30, 170, 100); // Adjust position & size as needed
+
+    // Save the PDF after all content is added
+    doc.save("Achievers_Contribution.pdf");
+  }).catch(function (error) {
+    console.error("Error generating the chart image:", error);
+  });
+});
   });
 </script>
+
 
 </body>
 </html>
